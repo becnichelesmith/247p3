@@ -19,26 +19,35 @@ export default class Player extends Phaser.Sprite {
     this.spacekey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.spacekey.onDown.add(this.dodge,this);
 
+    this.isPaused = false;
+  }
+
+  pauseGame() {
+    this.isPaused = true;
+  }
+
+  resumeGame() {
+    this.isPaused = false;
   }
 
   update() {
+    if (!this.isPaused) {
+      if (this.cursors.left.isDown) {
+        this.x -= this.speed;
 
-    if (this.cursors.left.isDown) {
-      this.x -= this.speed;
+      }
 
+      else if (this.cursors.right.isDown) {
+        this.x += this.speed;
+      }
+
+      if (this.cursors.up.isDown) {
+        this.y -= this.speed;
+      }
+      else if (this.cursors.down.isDown) {
+        this.y += this.speed;
+      }
     }
-
-    else if (this.cursors.right.isDown) {
-      this.x += this.speed;
-    }
-
-    if (this.cursors.up.isDown) {
-      this.y -= this.speed;
-    }
-    else if (this.cursors.down.isDown) {
-      this.y += this.speed;
-    }
-
   }
 
   dodge() {

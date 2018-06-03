@@ -19,7 +19,6 @@ export default class GameOver extends Phaser.State {
   update() {
     if(this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
       this.state.start('Game');
-
     }
   }
 }

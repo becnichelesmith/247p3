@@ -16,28 +16,42 @@ export default class Enemies extends Phaser.Group {
     this.enableBody = true;
     this.game.time.events.loop(Phaser.Timer.SECOND * 2, this.spawner, this).timer.start();
 
+    this.isPaused = false;
+  }
+
+  pauseGame() {
+    this.isPaused = true;
+  }
+
+  resumeGame() {
+    this.isPaused = false;
   }
 
   update() {
-    this.game.physics.arcade.collide(this);
-    this.children.forEach((enemy) => {
-      enemy.y += this.speed;
-    });
-
+    if (!this.isPaused) {
+      this.game.physics.arcade.collide(this);
+      this.children.forEach((enemy) => {
+        enemy.y += this.speed;
+      });
+    }
   }
 
   spawner() {
-    let point = this.game.rnd.integerInRange(0, 3)
-    let [x, y] = this.spawnPoints[point];
-    let enemycar = this.create(x, y, 'enemycar');
-    enemycar.scored = false;
-    enemycar.scale.x = 0.6;
-    enemycar.scale.y = 0.6;
-    enemycar.anchor.x = 0.5;
-    enemycar.anchor.y = 0.5;
-    enemycar.checkWorldBounds = true
+    if (!this.isPaused) {
+      let point = this.game.rnd.integerInRange(0, 3)
+      let [x, y] = this.spawnPoints[point];
+      let obstacles = ['awareness', 'hiring', 'language',
+      'mentorship-promotions', 'pay', 'pipeline', 'work-life-balance'];
+      var randObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
+      let enemycar = this.create(x, y, randObstacle);
+      enemycar.scored = false;
+      enemycar.scale.x = 0.2;
+      enemycar.scale.y = 0.2;
+      enemycar.anchor.x = 0.5;
+      enemycar.anchor.y = 0.5;
+      enemycar.checkWorldBounds = true
+    }
   }
-
 
   carReset(enemy) {
     enemy.destroy();

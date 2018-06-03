@@ -45,7 +45,36 @@ export default {
     {
       key: 'enemycar',
       type: 'image'
+    },
+    {
+      key: 'awareness',
+      type: 'image'
+    },
+    {
+      key: 'hiring',
+      type: 'image'
+    },
+    {
+      key: 'language',
+      type: 'image'
+    },
+    {
+      key: 'mentorship-promotions',
+      type: 'image'
+    },
+    {
+      key: 'pay',
+      type: 'image'
+    },
+    {
+      key: 'pipeline',
+      type: 'image'
+    },
+    {
+      key: 'work-life-balance',
+      type: 'image'
     }
+
 
     // Example: adding a background music.
     // {
