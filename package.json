@@ -39,5 +39,11 @@
     "mustache": "^2.3.0",
     "socket.io": "^1.7.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^2.5.7",
+    "gulp": "^3.9.1",
+    "sass": "^1.5.1"
+  }
 }
