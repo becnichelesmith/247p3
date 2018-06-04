@@ -59,15 +59,15 @@ export default class Game extends Phaser.State {
     // this.game.load.image('pipeline', 'assets/pipeline.png');
     // this.game.load.image('work-life-balance', 'assets/work-life-balance.png');
 
-      this.obstacleMessages = {
-        'awareness': { title: "Awareness", body: "Roughly 1 in 3 men (32%) say that discrimination against women in tech is *not* a problem" },
-        'workplace_culture': { title: "Workplace Culture", body: "66% of women felt excluded from key social/networking opportunities because of gender" },
-        'language': { title: "Language", body: "TODO3" },
-        'mentorship-promotions': { title: "Mentorship & Promotions", body: "TODO4" },
-        'pay': { title: "Pay", body: "Just 1 year out of college, women make 77% of what men do in computer and information science." },
-        'harassment': { title: "Sexual Harassment", body: "60% of women in tech reported unwanted sexual advances." },
-        'maternity_leave': { title: "Maternity Leave", body: "More than 80% of women say they feel pressure to return early from parental leave and nearly ⅓ worry about losing their jobs" }
-      };
+    this.obstacleMessages = {
+      'awareness': {title: "Awareness", body: "TODO"},
+      'hiring': {title: "Hiring", body: "TODO2"},
+      'language': {title: "Language", body: "TODO3"},
+      'mentorship-promotions': {title: "Mentorship & Promotions", body: "TODO4"},
+      'pay': {title: "Pay", body: "TODO5"},
+      'pipeline': {title: "Pipeline", body: "TODO6"},
+      'work-life-balance': {title: "Work / life balance", body: "TODO7"}
+    };
   }
 
   pauseGame() {
@@ -102,7 +102,7 @@ export default class Game extends Phaser.State {
           if ((this.player.y - enemy.y) < 10 && (this.player.y - enemy.y) > 0) {
             enemy.scored = true;
             //Increase the score
-            this.scoreBoard.updateScore(1);
+            this.scoreBoard.updateScore(5);
           }
         }
       });
