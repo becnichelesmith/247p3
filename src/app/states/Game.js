@@ -1,9 +1,9 @@
 /*
- * Game state
- * ============================================================================
- *
- * A sample Game state, displaying the Phaser logo.
- */
+* Game state
+* ============================================================================
+*
+* A sample Game state, displaying the Phaser logo.
+*/
 
 import Road from '../objects/Road';
 import Player from '../objects/Player';
@@ -14,17 +14,17 @@ export default class Game extends Phaser.State {
 
   makeOverlay(title) {
     this.stage.backgroundColor = '#000';
-    let style = { font: "bold 20px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+    let style = { font: 'bold 20px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle', wordWrap: true, wordWrapWidth: 400 };
     this.text = this.add.text(this.world.centerX, this.world.centerY, (this.obstacleMessages[title].title), style);
     this.text2 = this.add.text(this.world.centerX, this.world.centerY, (this.obstacleMessages[title].body), style);
     this.text.anchor.set(0.5,0.5);
     this.text2.anchor.set(0.5,0.5);
     // this.text2.x = this.text2.x + 50;
-    this.text2.y = this.text2.y + 50;
+    this.text2.y = this.text2.y + 150;
     //
     // var image = this.game.add.image(100, 100, title);
 
-    this.continue = this.add.text(this.world.centerX, this.world.centerY + 250, "Press spacebar to continue!", style);
+    this.continue = this.add.text(this.world.centerX, this.world.centerY + 300, 'Press spacebar to continue!', style);
     this.continue.anchor.set(0.5,0.5);
   }
 
@@ -60,13 +60,13 @@ export default class Game extends Phaser.State {
     // this.game.load.image('work-life-balance', 'assets/work-life-balance.png');
 
     this.obstacleMessages = {
-      'awareness': {title: "Awareness", body: "TODO"},
-      'hiring': {title: "Hiring", body: "TODO2"},
-      'language': {title: "Language", body: "TODO3"},
-      'mentorship-promotions': {title: "Mentorship & Promotions", body: "TODO4"},
-      'pay': {title: "Pay", body: "TODO5"},
-      'pipeline': {title: "Pipeline", body: "TODO6"},
-      'work-life-balance': {title: "Work / life balance", body: "TODO7"}
+      'awareness': {title: 'Awareness', body: 'One day, you are walking to the snack bar in your office, when you overhear a group of your male colleagues talking about how discrimination against women is not a problem.'},
+      'hiring': {title: 'Hiring', body: 'TODO'},
+      'language': {title: 'Language', body: 'At some point in your career, you have a significant other, yet one of your male counterparts continues to ask you out for dinner - even after you have made it clear you are not interested.'},
+      'mentorship-promotions': {title: 'Mentorship & Promotions', body: 'A few years into your career, you have been working hard towards a promotion and when the time comes, you see that you have been passed up for the position you wanted by one of your male counterparts that has achieved similar ratings, yet has worked in the role for a shorter amount of time.'},
+      'pay': {title: 'Pay', body: 'Early on in your career, you find some friends from your company that you like and you all become roommates. When it comes time fill out the rental agreement, you all must list your salary - you can’t help but notice that a man with your same title listed that his yearly income is more than yours.'},
+      'pipeline': {title: 'Pipeline', body: 'TODO'},
+      'work-life-balance': {title: 'Work / life balance', body: '75% of women were asked about family life, marital status, and children in interviews.'}
     };
   }
 
@@ -97,30 +97,30 @@ export default class Game extends Phaser.State {
         this.game.physics.arcade.overlap(this.player, enemy, this.accident, null, this);
 
         //Checking if this car was already scored
-        if (!enemy.scored) {
-          //We passed it or not
-          if ((this.player.y - enemy.y) < 10 && (this.player.y - enemy.y) > 0) {
-            enemy.scored = true;
-            //Increase the score
-            this.scoreBoard.updateScore(5);
-          }
-        }
+        // if (!enemy.scored) {
+        //   //We passed it or not
+        //   if ((this.player.y - enemy.y) < 10 && (this.player.y - enemy.y) > 0) {
+        //     enemy.scored = true;
+        //     //Increase the score
+        //     this.scoreBoard.updateScore(5);
+        //   }
+        // }
       });
     }
   }
 
   accident(player, enemy) {
     //Accident? You are doomed :(
-      this.enemies.carReset(enemy);
-      if (!this.seenObstacles.includes(enemy.key)) {
-        this.pauseGame();
-        this.makeOverlay(enemy.key);
-        this.seenObstacles.push(enemy.key);
-      }
-      this.scoreBoard.updateScore(-5);
-      if (this.scoreBoard.getScore() <= 0) {
-        this.state.start('GameOver');
-      }
+    this.enemies.carReset(enemy);
+    if (!this.seenObstacles.includes(enemy.key)) {
+      this.pauseGame();
+      this.makeOverlay(enemy.key);
+      this.seenObstacles.push(enemy.key);
+    }
+    this.scoreBoard.updateScore(-5);
+    if (this.scoreBoard.getScore() <= 0) {
+      this.state.start('GameOver');
+    }
     // this.state.start('GameOver');
   }
 }

@@ -1,0 +1,13 @@
+.*
+*.log
+Thumbs.db
+
+build
+node_modules
+bower_components
+
+!.git*
+!.babelrc
+!.eslint*
+!.yo-rc.json
+!.editorconfig
