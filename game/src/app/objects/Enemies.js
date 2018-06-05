@@ -38,7 +38,7 @@ export default class Enemies extends Phaser.Group {
 
   spawner() {
     if (!this.isPaused) {
-      let point = this.game.rnd.integerInRange(0, 3)
+      let point = this.game.rnd.integerInRange(0, 3);
       let [x, y] = this.spawnPoints[point];
       let obstacles = ['awareness', 'hiring', 'language',
       'mentorship-promotions', 'pay', 'pipeline', 'work-life-balance'];
@@ -49,7 +49,7 @@ export default class Enemies extends Phaser.Group {
       enemycar.scale.y = 0.2;
       enemycar.anchor.x = 0.5;
       enemycar.anchor.y = 0.5;
-      enemycar.checkWorldBounds = true
+      enemycar.checkWorldBounds = true;
     }
   }
 
