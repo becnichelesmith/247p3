@@ -51,7 +51,7 @@ export default {
       type: 'image'
     },
     {
-      key: 'hiring',
+      key: 'harassment',
       type: 'image'
     },
     {
@@ -67,11 +67,11 @@ export default {
       type: 'image'
     },
     {
-      key: 'pipeline',
+      key: 'workplace_culture',
       type: 'image'
     },
     {
-      key: 'work-life-balance',
+      key: 'maternity_leave',
       type: 'image'
     }
 
