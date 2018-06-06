@@ -61,12 +61,12 @@ export default class Game extends Phaser.State {
 
     this.obstacleMessages = {
       'awareness': {title: 'Awareness', body: 'One day, you are walking to the snack bar in your office, when you overhear a group of your male colleagues talking about how discrimination against women is not a problem.'},
-      'hiring': {title: 'Hiring', body: 'TODO'},
+      'harassment': {title: 'Hiring', body: 'TODO'},
       'language': {title: 'Language', body: 'At some point in your career, you have a significant other, yet one of your male counterparts continues to ask you out for dinner - even after you have made it clear you are not interested.'},
       'mentorship-promotions': {title: 'Mentorship & Promotions', body: 'A few years into your career, you have been working hard towards a promotion and when the time comes, you see that you have been passed up for the position you wanted by one of your male counterparts that has achieved similar ratings, yet has worked in the role for a shorter amount of time.'},
       'pay': {title: 'Pay', body: 'Early on in your career, you find some friends from your company that you like and you all become roommates. When it comes time fill out the rental agreement, you all must list your salary - you can’t help but notice that a man with your same title listed that his yearly income is more than yours.'},
-      'pipeline': {title: 'Pipeline', body: 'TODO'},
-      'work-life-balance': {title: 'Work / life balance', body: '75% of women were asked about family life, marital status, and children in interviews.'}
+      'workplace_culture': {title: 'Workplace Culture', body: 'TODO'},
+      'maternity_leave': {title: 'Maternity Leave', body: '75% of women were asked about family life, marital status, and children in interviews.'}
     };
   }
 
