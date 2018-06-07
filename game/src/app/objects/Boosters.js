@@ -11,7 +11,7 @@ export default class Boosters extends Phaser.Group {
   constructor(game) {
 
     super(game, null, 'boosters', false, true, Phaser.Physics.ARCADE);
-    this.speed = 7;
+    this.speed = 5;
     this.spawnPoints = [[70, 0], [180, 0], [310, 0], [390, 0]];
     this.enableBody = true;
     this.game.time.events.loop(Phaser.Timer.SECOND * 2, this.spawner, this).timer.start();

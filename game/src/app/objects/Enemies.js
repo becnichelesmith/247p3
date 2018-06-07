@@ -40,7 +40,7 @@ export default class Enemies extends Phaser.Group {
     if (!this.isPaused) {
       let point = this.game.rnd.integerInRange(0, 3);
       let [x, y] = this.spawnPoints[point];
-      let obstacles = ['awareness', 'harassment', 'language',
+      let obstacles = ['awareness', 'harassment',
       'mentorship-promotions', 'pay', 'workplace_culture', 'maternity_leave'];
       var randObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
       let enemycar = this.create(x, y, randObstacle);
