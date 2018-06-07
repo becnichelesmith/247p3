@@ -9,8 +9,8 @@ export default class GameOver extends Phaser.State {
 
   create () {
     this.stage.backgroundColor = '#000';
-    let style = { font: 'bold 20px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
-    this.text = this.add.text(this.world.centerX, this.world.centerY, 'You\'re out of fuel! Unfortunately, after running into so many obstacles, ' +  
+    let style = { font: 'bold 20px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle', wordWrap: true, wordWrapWidth: 400 };
+    this.text = this.add.text(this.world.centerX, this.world.centerY, 'You\'re out of fuel! Unfortunately, after running into so many obstacles, ' +
       'you have to exit your career in technology. You\'re among the 52% of women who leave technology as an industry ' +
       'because they’re made to feel unwelcome and undervalued, and see their careers stagnating. Press the spacebar to try again from the beginning', style);
     this.text.anchor.set(0.5,0.5);
