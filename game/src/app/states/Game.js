@@ -8,15 +8,16 @@
 import Road from '../objects/Road';
 import Player from '../objects/Player';
 import Enemies from '../objects/Enemies';
+import Boosters from '../objects/Boosters';
 import ScoreBoard from '../objects/ScoreBoard';
 
 export default class Game extends Phaser.State {
 
-  makeOverlay(title) {
+  makeOverlay(title, message) {
     this.stage.backgroundColor = '#000';
     let style = { font: 'bold 20px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle', wordWrap: true, wordWrapWidth: 400 };
-    this.text = this.add.text(this.world.centerX, this.world.centerY, (this.obstacleMessages[title].title), style);
-    this.text2 = this.add.text(this.world.centerX, this.world.centerY, (this.obstacleMessages[title].body), style);
+    this.text = this.add.text(this.world.centerX, this.world.centerY, (message.title), style);
+    this.text2 = this.add.text(this.world.centerX, this.world.centerY, (message.body), style);
     this.text.anchor.set(0.5,0.5);
     this.text2.anchor.set(0.5,0.5);
     // this.text2.x = this.text2.x + 50;
@@ -45,11 +46,13 @@ export default class Game extends Phaser.State {
     this.road = this.add.existing(new Road(this.game, x, y));
     this.player = this.add.existing(new Player(this.game, x, 500));
     this.enemies = this.add.existing(new Enemies(this.game));
+    this.boosters = this.add.existing(new Boosters(this.game));
     this.scoreBoard = this.add.existing(new ScoreBoard(this.game, 100));
     this.game.camera.follow(this.player);
 
     this.isPaused = false;
     this.seenObstacles = [];
+    this.seenBoosters = [];
 
     // this.game.load.image('awareness', 'assets/awareness.png');
     // this.game.load.image('hiring', 'assets/hiring.png');
@@ -61,12 +64,18 @@ export default class Game extends Phaser.State {
 
     this.obstacleMessages = {
       'awareness': {title: 'Awareness', body: 'One day, you are walking to the snack bar in your office, when you overhear a group of your male colleagues talking about how discrimination against women is not a problem.'},
-      'harassment': {title: 'Hiring', body: 'TODO'},
+      'harassment': {title: 'Harassment', body: 'TODO'},
       'language': {title: 'Language', body: 'At some point in your career, you have a significant other, yet one of your male counterparts continues to ask you out for dinner - even after you have made it clear you are not interested.'},
       'mentorship-promotions': {title: 'Mentorship & Promotions', body: 'A few years into your career, you have been working hard towards a promotion and when the time comes, you see that you have been passed up for the position you wanted by one of your male counterparts that has achieved similar ratings, yet has worked in the role for a shorter amount of time.'},
       'pay': {title: 'Pay', body: 'Early on in your career, you find some friends from your company that you like and you all become roommates. When it comes time fill out the rental agreement, you all must list your salary - you can’t help but notice that a man with your same title listed that his yearly income is more than yours.'},
       'workplace_culture': {title: 'Workplace Culture', body: 'TODO'},
       'maternity_leave': {title: 'Maternity Leave', body: '75% of women were asked about family life, marital status, and children in interviews.'}
+    };
+
+    this.boosterMessages = {
+      'flexible_hours': {title: 'BOOSTER: Flexible Work Hours', body: 'TODO'},
+      'network': {title: 'BOOSTER: Networking Opportunities', body: 'TODO'},
+      'eliminate_bias': {title: 'BOOSTER: Eliminating Bias', body: 'TODO'}
     };
   }
 
@@ -74,6 +83,7 @@ export default class Game extends Phaser.State {
     this.road.pauseGame();
     this.player.pauseGame();
     this.enemies.pauseGame();
+    this.boosters.pauseGame();
     this.scoreBoard.pauseGame();
     this.isPaused = true;
   }
@@ -82,6 +92,7 @@ export default class Game extends Phaser.State {
     this.road.resumeGame();
     this.player.resumeGame();
     this.enemies.resumeGame();
+    this.boosters.resumeGame();
     this.scoreBoard.resumeGame();
     this.isPaused = false;
   }
@@ -106,6 +117,9 @@ export default class Game extends Phaser.State {
         //   }
         // }
       });
+      this.boosters.forEach((booster) => {
+        this.game.physics.arcade.overlap(this.player, booster, this.boosted, null, this);
+      });
     }
   }
 
@@ -114,13 +128,22 @@ export default class Game extends Phaser.State {
     this.enemies.carReset(enemy);
     if (!this.seenObstacles.includes(enemy.key)) {
       this.pauseGame();
-      this.makeOverlay(enemy.key);
+      this.makeOverlay(enemy.key, this.obstacleMessages[enemy.key]);
       this.seenObstacles.push(enemy.key);
     }
     this.scoreBoard.updateScore(-5);
     if (this.scoreBoard.getScore() <= 0) {
       this.state.start('GameOver');
     }
-    // this.state.start('GameOver');
+  }
+
+  boosted(player, booster) {
+    this.boosters.carReset(booster);
+    if (!this.seenBoosters.includes(booster.key)) {
+      this.pauseGame();
+      this.makeOverlay(booster.key, this.boosterMessages[booster.key]);
+      this.seenBoosters.push(booster.key);
+    }
+    this.scoreBoard.updateScore(5);
   }
 }

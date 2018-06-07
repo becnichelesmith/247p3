@@ -34,6 +34,10 @@ export default class Preload extends Phaser.State {
   preload () {
     this.showSplashScreen();
     this.loadAssets();
+    this.preloadBar = this.add.sprite(this.world.centerX, this.world.centerY, 'preloadBar');
+    this.game.load.setPreloadSprite(this.preloadBar);
+
+    
   }
 
   update () {

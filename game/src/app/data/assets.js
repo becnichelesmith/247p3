@@ -35,6 +35,18 @@ export default {
       type: 'image'
     },
     {
+      key: 'network',
+      type: 'image'
+    },
+    {
+      key: 'flexible_hours',
+      type: 'image'
+    },
+    {
+      key: 'eliminate_bias',
+      type: 'image'
+    },
+    {
       key: 'road',
       type: 'image'
     },

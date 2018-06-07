@@ -40,13 +40,6 @@ export default class Player extends Phaser.Sprite {
       else if (this.cursors.right.isDown) {
         this.x += this.speed;
       }
-
-      if (this.cursors.up.isDown) {
-        this.y -= this.speed;
-      }
-      else if (this.cursors.down.isDown) {
-        this.y += this.speed;
-      }
     }
   }
 

@@ -5,7 +5,7 @@
 
 export default class ScoreBoard extends Phaser.Text {
   constructor (game, score) {
-    super(game, 300, 20, `Fuel:  ${score}`, {font: '30px', fill: '#fff'});
+    super(game, 300, 20, `fuel:  ${score}`, {font: '30px', fill: '#fff'});
     this.score = score;
     this.isPaused = false;
   }
@@ -13,7 +13,7 @@ export default class ScoreBoard extends Phaser.Text {
   // Score Updater Method
   updateScore(add)  {
     this.score += add;
-    this.setText(`Fuel:  ${this.score}`);
+    this.setText(`fuel:  ${this.score}`);
   }
 
   pauseGame() {
